@@ -37,6 +37,7 @@ export default function SignUpScreen({ setToken }) {
           );
           alert("compte créé");
           console.log(data);
+          setToken(data.token);
         } catch (error) {
           console.log(error.response);
           setErrormessage("La crétation a échouée");
@@ -107,7 +108,7 @@ export default function SignUpScreen({ setToken }) {
       />
 
       <TouchableOpacity style={styles.btn} title="Sign up" onPress={submit}>
-        <Text>Sign up</Text>
+        <Text style={styles.h2}>Sign up</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -127,7 +128,9 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
   },
   contentContainer: {
+    flex: 1,
     alignItems: "center",
+    justifyContent: "space-arround",
   },
 
   logo: {
@@ -137,12 +140,18 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   h1: {
-    fontSize: 23,
+    fontSize: 24,
     color: "grey",
-    marginBottom: 20,
+    marginBottom: 30,
+    fontWeight: "bold",
+  },
+  h2: {
+    fontSize: 21,
+    color: "grey",
+    fontWeight: "bold",
   },
 
-  p: { marginBottom: 20 },
+  p: { marginBottom: 20, color: "grey" },
   textarea: {
     width: "80%",
     paddingLeft: 8,
@@ -158,11 +167,12 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   btn: {
-    borderRadius: 25,
-    paddingHorizontal: 30,
-    paddingVertical: 10,
+    marginTop: 30,
+    borderRadius: 30,
+    paddingHorizontal: 80,
+    paddingVertical: 15,
     color: "red",
-    borderWidth: 1,
+    borderWidth: 3,
     borderColor: "#EA5860",
     marginBottom: 20,
   },

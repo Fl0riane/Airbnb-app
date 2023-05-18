@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  View,
 } from "react-native";
 
 export default function SignInScreen({ setToken }) {
@@ -29,7 +30,7 @@ export default function SignInScreen({ setToken }) {
             password,
           }
         );
-        alert("vous êtes connecté");
+
         console.log(data);
       } catch (error) {
         console.log(error.response);
@@ -47,6 +48,7 @@ export default function SignInScreen({ setToken }) {
     >
       <Image style={styles.logo} source={require("../assets/AirbnbLogo.png")} />
       <Text style={styles.h1}>Sign in</Text>
+
       <TextInput
         placeholder="Email"
         style={styles.input}
@@ -68,8 +70,15 @@ export default function SignInScreen({ setToken }) {
         value={password}
       />
 
-      <TouchableOpacity style={styles.btn} title="Sign in" onPress={submit}>
-        <Text>Sign in</Text>
+      <TouchableOpacity
+        style={styles.btn}
+        title="Sign in"
+        onPress={async () => {
+          const userToken = "secret-token";
+          setToken(userToken);
+        }}
+      >
+        <Text style={styles.h2}>Sign in</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -89,8 +98,9 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
   },
   contentContainer: {
+    flex: 1,
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-arround",
   },
 
   logo: {
@@ -100,11 +110,18 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   h1: {
-    fontSize: 23,
+    fontSize: 24,
     color: "grey",
-    marginBottom: 20,
+    marginBottom: 30,
+    fontWeight: "bold",
   },
-  p: { marginBottom: 20 },
+  h2: {
+    fontSize: 21,
+    color: "grey",
+    fontWeight: "bold",
+  },
+
+  p: { marginBottom: 20, color: "grey" },
   textarea: {
     width: "80%",
     paddingLeft: 8,
@@ -120,11 +137,12 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   btn: {
-    borderRadius: 25,
-    paddingHorizontal: 30,
-    paddingVertical: 10,
+    marginTop: 30,
+    borderRadius: 30,
+    paddingHorizontal: 80,
+    paddingVertical: 15,
     color: "red",
-    borderWidth: 1,
+    borderWidth: 3,
     borderColor: "#EA5860",
     marginBottom: 20,
   },
