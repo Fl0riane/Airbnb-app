@@ -12,6 +12,7 @@ import SettingsScreen from "./containers/SettingsScreen";
 import SplashScreen from "./containers/SplashScreen";
 import HeaderLogo from "./components/HeaderLogo";
 import RoomScreen from "./containers/RoomScreen";
+import AroundMe from "./containers/AroundMe";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -101,9 +102,6 @@ export default function App() {
                         name="Home"
                         options={{
                           headerTitle: () => <HeaderLogo />,
-                          // title: "My App",
-                          // headerStyle: { backgroundColor: "red" },
-                          // headerTitleStyle: { color: "white" },
                         }}
                       >
                         {() => <HomeScreen />}
@@ -128,6 +126,40 @@ export default function App() {
                     </Stack.Navigator>
                   )}
                 </Tab.Screen>
+
+                {/* *-------------------------------------------* */}
+                <Tab.Screen
+                  name="TabAroundMe"
+                  option={{
+                    tabBarLabel: "AroundMe",
+                    tabBarIcon: ({ color, size }) => (
+                      <Ionicons
+                        name="location-sharp"
+                        size={size}
+                        color={color}
+                      />
+                    ),
+                  }}
+                >
+                  {() => (
+                    <Stack.Navigator>
+                      <Stack.Screen
+                        name="AroundMe"
+                        component={AroundMe}
+                        options={{ headerTitle: () => <HeaderLogo /> }}
+                      />
+                      <Stack.Screen
+                        name="RoomMap"
+                        options={{
+                          title: "Room",
+                        }}
+                      >
+                        {() => <RoomScreen />}
+                      </Stack.Screen>
+                    </Stack.Navigator>
+                  )}
+                </Tab.Screen>
+                {/* /*-----------------------------------------------*/}
                 <Tab.Screen
                   name="TabSettings"
                   options={{
@@ -154,6 +186,7 @@ export default function App() {
                     </Stack.Navigator>
                   )}
                 </Tab.Screen>
+                {/* ---------------------------------- */}
               </Tab.Navigator>
             )}
           </Stack.Screen>
